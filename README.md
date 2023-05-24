@@ -82,7 +82,7 @@ The Michalewicz function is usually evaluated in the range 0 to pi. The exact pl
 
 Here, m = 10.
 ```python
-from opt_test_functions import Rastrigin
+from opt_test_functions import Michalewicz
 
 myTestFunction = Michalewicz()
 linsp = np.linspace(0, 1, 100)
