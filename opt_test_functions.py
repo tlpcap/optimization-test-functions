@@ -80,7 +80,7 @@ class Rastrigin(OptFunction):
     def function(x):
         A = 10
         d = x.shape[0]
-        xsq = np.power(x,2)
+        xsq = x**2
         wave = np.cos(2*np.pi*x)
         return A*d + np.sum(xsq + A*wave,axis=0)
 
@@ -95,9 +95,9 @@ class Michalewicz(OptFunction):
         m = 10
         d = x.shape[0]
         i = (np.arange(d) + 1)/np.pi
-        xsq = np.power(x,2)
+        xsq = x**2
         s = (i*xsq.T).T
-        return -np.sum(np.sin(x)*(np.power(np.sin(s),2*m)), axis=0)
+        return -np.sum(np.sin(x)*np.sin(s)**(2*m), axis=0)
 
 class Zakharov(OptFunction):
     def __init__(self, noise=False, noise_stddev=1, xmin=0, xmax=1):
@@ -109,9 +109,9 @@ class Zakharov(OptFunction):
     def function(x):
         d = x.shape[0]
         i = (np.arange(d) + 1)*0.5
-        xsq = np.power(x,2)
+        xsq = x**2
         s = np.sum((i*x.T).T, axis=0)
-        return np.sum(xsq, axis=0) + np.power(s,2) + np.power(s,4)
+        return np.sum(xsq, axis=0) + s**2 + s**4
 
 class StyblinskiTang(OptFunction):
     def __init__(self, noise=False, noise_stddev=1, xmin=0, xmax=1):
@@ -121,4 +121,4 @@ class StyblinskiTang(OptFunction):
 
     @staticmethod
     def function(x):
-        return 0.5*np.sum(np.power(x, 4) - 16*np.power(x, 2) + 5*x, axis=0)
+        return 0.5 * np.sum(x**4 - 16 * x**2 + 5 * x, axis=0)
